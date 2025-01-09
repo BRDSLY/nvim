@@ -285,7 +285,7 @@ require('lazy').setup({
       sync_root_with_cwd = true, -- Make tree reflect cwd
     },
     keys = {
-      { '<leader>e', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle NvimTree' },
+      { '<leader>e', '<cmd>NvimTreeToggle<CR><cmd>:setlocal relativenumber<CR>', desc = 'Toggle NvimTree' },
     },
   },
 
