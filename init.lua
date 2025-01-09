@@ -84,6 +84,13 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
+-- Disable netrw - nvim-tree will be used instead
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- Make cwd automatically change to selected buffer
+--vim.o.autochdir = true
+
 -- Set powershell as default shell
 vim.o.shell = 'powershell.exe'
 vim.o.shellcmdflag = '-command'
@@ -107,8 +114,6 @@ vim.g.have_nerd_font = true
 -- Show relative line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
--- Make line numbers show in netrw
-vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -262,6 +267,28 @@ require('lazy').setup({
     },
   },
 
+  { -- Add nvim-tree
+    'nvim-tree/nvim-tree.lua',
+    opts = {
+      sort = {
+        sorter = 'case_sensitive',
+      },
+      view = {
+        width = 30,
+      },
+      renderer = {
+        group_empty = true,
+      },
+      filters = {
+        dotfiles = true,
+      },
+      sync_root_with_cwd = true, -- Make tree reflect cwd
+    },
+    keys = {
+      { '<leader>e', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle NvimTree' },
+    },
+  },
+
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --
   -- This is often very useful to both group configuration, as well as handle
@@ -387,12 +414,17 @@ require('lazy').setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        -- pickers = {}
+        defaults = {
+          mappings = {
+            i = {
+              ['<c-d>'] = require('telescope.actions').delete_buffer, -- Ctrl-d to delete buffer in insert mode
+            },
+            n = {
+              ['<c-d>'] = require('telescope.actions').delete_buffer, -- Ctrl-d to delete buffer in normal mode
+            },
+          },
+        },
+        pickers = {},
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
