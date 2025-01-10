@@ -200,7 +200,7 @@ require('lazy').setup({
         group_empty = true,
       },
       filters = {
-        dotfiles = true,
+        -- dotfiles = true,
       },
       sync_root_with_cwd = true, -- Make tree reflect cwd
       on_attach = function(bufnr)
