@@ -88,9 +88,6 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Make cwd automatically change to selected buffer
---vim.o.autochdir = true
-
 -- Set powershell as default shell
 vim.o.shell = 'powershell.exe'
 vim.o.shellcmdflag = '-command'
@@ -177,6 +174,9 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- Set cd
+vim.keymap.set('n', '<leader>cd', '<cmd>cd %:p:h<CR>:pwd<CR>', { desc = 'Change cd to current files dir' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -275,6 +275,7 @@ require('lazy').setup({
       },
       view = {
         width = 30,
+        relativenumber = true,
       },
       renderer = {
         group_empty = true,
@@ -285,7 +286,7 @@ require('lazy').setup({
       sync_root_with_cwd = true, -- Make tree reflect cwd
     },
     keys = {
-      { '<leader>e', '<cmd>NvimTreeToggle<CR><cmd>:setlocal relativenumber<CR>', desc = 'Toggle NvimTree' },
+      { '<leader>e', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle NvimTree' },
     },
   },
 
@@ -424,7 +425,11 @@ require('lazy').setup({
             },
           },
         },
-        pickers = {},
+        pickers = {
+          colorscheme = {
+            enable_preview = true,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
