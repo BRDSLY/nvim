@@ -120,6 +120,11 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+vim.keymap.set('n', '<C-left>', '<C-w>H', { desc = 'Move window to the left' })
+vim.keymap.set('n', '<C-right>', '<C-w>L', { desc = 'Move window to the right' })
+vim.keymap.set('n', '<C-down>', '<C-w>J', { desc = 'Move window to the bottom' })
+vim.keymap.set('n', '<C-up>', '<C-w>K', { desc = 'Move window to the top' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -183,46 +188,6 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
-    },
-  },
-
-  { -- Add nvim-tree
-    'nvim-tree/nvim-tree.lua',
-    opts = {
-      sort = {
-        sorter = 'case_sensitive',
-      },
-      view = {
-        width = 30,
-        relativenumber = true,
-      },
-      renderer = {
-        group_empty = true,
-      },
-      filters = {
-        -- dotfiles = true,
-      },
-      sync_root_with_cwd = true, -- Make tree reflect cwd
-      on_attach = function(bufnr)
-        local api = require 'nvim-tree.api'
-
-        local function opts(desc)
-          return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-        end
-
-        -- default mappings
-        api.config.mappings.default_on_attach(bufnr)
-
-        -- Bind 'o' to open file and keep tree focused
-        vim.keymap.set('n', 'o', function()
-          local node = api.tree.get_node_under_cursor()
-          api.node.open.edit(node)
-          api.tree.focus()
-        end, opts 'Open file and focus tree')
-      end,
-    },
-    keys = {
-      { '<leader>e', '<cmd>NvimTreeToggle<CR>', desc = 'Toggle NvimTree' },
     },
   },
 
@@ -917,6 +882,7 @@ require('lazy').setup({
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   -- { import = 'custom.plugins' },
+  require 'custom.plugins.init',
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
