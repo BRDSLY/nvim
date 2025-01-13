@@ -3,5 +3,15 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+  require 'custom.plugins.gitsigns',
+  require 'custom.plugins.vim-sleuth',
+  require 'custom.plugins.which-key',
+  require 'custom.plugins.telescope',
+  require 'custom.plugins.lsp',
+  require 'custom.plugins.autocomplete',
+  require 'custom.plugins.autoformat',
+  require 'custom.plugins.mini-nvim',
+  require 'custom.plugins.treesitter',
+  require 'custom.plugins.todo-comments',
   require 'custom.plugins.oil',
 }
