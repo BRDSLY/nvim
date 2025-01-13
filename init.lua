@@ -1,6 +1,6 @@
 vim.api.nvim_create_autocmd('VimEnter', {
   callback = function()
-    vim.cmd.colorscheme 'brown'
+    vim.cmd.colorscheme 'ashen'
   end,
 })
 
