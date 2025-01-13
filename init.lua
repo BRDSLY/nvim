@@ -125,6 +125,31 @@ vim.keymap.set('n', '<C-right>', '<C-w>L', { desc = 'Move window to the right' }
 vim.keymap.set('n', '<C-down>', '<C-w>J', { desc = 'Move window to the bottom' })
 vim.keymap.set('n', '<C-up>', '<C-w>K', { desc = 'Move window to the top' })
 
+-- Define DiffOrig command
+vim.api.nvim_create_user_command('DiffOrig', function()
+  local diffline = vim.fn.line '.'
+  vim.cmd 'vert new' -- Open a vertical split
+  vim.bo.buftype = 'nofile' -- Set buffer type to nofile
+  vim.cmd 'read #' -- Read the original file into the split
+  vim.cmd '0delete' -- Delete the empty first line
+  vim.cmd 'diffthis' -- Enable diff mode for this buffer
+  vim.cmd('exe "normal! " .. ' .. diffline .. ' .. "G"') -- Move to the same line as in the current buffer
+  vim.cmd 'wincmd p' -- Go back to the original buffer
+  vim.cmd 'diffthis' -- Enable diff mode for the original buffer
+  vim.cmd 'wincmd p' -- Return to the split
+end, {})
+
+-- Map <Leader>do to DiffOrig
+vim.keymap.set('n', '<Leader>do', ':DiffOrig<CR>', { noremap = true, silent = true })
+
+-- Map <Leader>dc to close the diff view
+vim.keymap.set('n', '<Leader>dc', function()
+  vim.cmd 'diffoff' -- Turn off diff mode
+  vim.cmd 'q' -- Close the split
+  local diffline = vim.fn.line '.'
+  vim.cmd('exe "normal! " .. ' .. diffline .. ' .. "G"') -- Move to the same line
+end, { noremap = true, silent = true })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
