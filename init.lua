@@ -14,11 +14,13 @@ vim.cmd.colorscheme 'wildcharm'
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Set powershell as default shell
-vim.o.shell = 'powershell.exe -NoProfile'
-vim.o.shellcmdflag = '-command'
-vim.o.shellquote = [[\"]]
-vim.o.shellxquote = ''
+-- Set powershell as default shell if in windows
+if string.match(string.lower(vim.loop.os_uname().sysname), 'windows') then
+  vim.o.shell = 'powershell.exe -NoProfile'
+  vim.o.shellcmdflag = '-command'
+  vim.o.shellquote = [[\"]]
+  vim.o.shellxquote = ''
+end
 
 -- Set <space> as the leader key
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
