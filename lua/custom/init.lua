@@ -14,7 +14,6 @@ return {
   require 'custom.plugins.treesitter',
   require 'custom.plugins.todo-comments',
   require 'custom.plugins.oil',
-  require 'custom.plugins.dap',
 
   -- require 'custom.plugins.themes.brown',
   require 'custom.plugins.themes.ashen',
