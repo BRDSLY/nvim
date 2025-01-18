@@ -14,13 +14,41 @@ local function insert_date(format)
   vim.api.nvim_set_current_line(new_line)
   vim.api.nvim_win_set_cursor(0, { row, col + #date }) -- Move cursor after the inserted date
 end
-
 -- Keybindings for inserting dates
 function M.setup()
-  vim.api.nvim_set_keymap('n', '<leader>tdd', ":lua require('custom.plugins.custom.type').insert_date('%d-%m-%y')<CR>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>td-', ":lua require('custom.plugins.custom.type').insert_date('%d-%m-%y')<CR>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>td_', ":lua require('custom.plugins.custom.type').insert_date('%d_%m_%y')<CR>", { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<leader>td/', ":lua require('custom.plugins.custom.type').insert_date('%d/%m/%y')<CR>", { noremap = true, silent = true })
+  -- Type Date
+  vim.api.nvim_set_keymap(
+    'n',
+    '<leader>tdd',
+    ":lua require('custom.plugins.custom.type').insert_date('%d-%m-%y')<CR>",
+    { noremap = true, silent = true, desc = '[T]ype [D]iary [D]ate' }
+  )
+  vim.api.nvim_set_keymap(
+    'n',
+    '<leader>td-',
+    ":lua require('custom.plugins.custom.type').insert_date('%d-%m-%y')<CR>",
+    { noremap = true, silent = true, desc = '[T]ype Diary [D]ate [-]' }
+  )
+  vim.api.nvim_set_keymap(
+    'n',
+    '<leader>td_',
+    ":lua require('custom.plugins.custom.type').insert_date('%d_%m_%y')<CR>",
+    { noremap = true, silent = true, desc = '[T]ype Diary [D]ate [_]' }
+  )
+  vim.api.nvim_set_keymap(
+    'n',
+    '<leader>td/',
+    ":lua require('custom.plugins.custom.type').insert_date('%d/%m/%y')<CR>",
+    { noremap = true, silent = true, desc = '[T]ype Diary [D]ate [/]' }
+  )
+
+  -- Type Diary Entry
+  vim.api.nvim_set_keymap(
+    'n',
+    '<leader>tde',
+    ":lua require('custom.plugins.custom.type').insert_date('- %H:%M: ')<CR>:startinsert!<CR>",
+    { noremap = true, silent = true, desc = '[T]ype [D]iary [E]ntry' }
+  )
 end
 
 -- Public function for inserting date in a specific format
