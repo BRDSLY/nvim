@@ -1,3 +1,5 @@
+vim.g.have_nerd_font = true
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -13,7 +15,27 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Setup plugins
-require("lazy").setup("plugins")
+require("lazy").setup({
+	require "plugins"
+}, {
+  ui = {
+    icons = vim.g.have_nerd_font and {} or {
+      cmd = '⌘',
+      config = '🛠',
+      event = '📅',
+      ft = '📂',
+      init = '⚙',
+      keys = '🗝',
+      plugin = '🔌',
+      runtime = '💻',
+      require = '🌙',
+      source = '📄',
+      start = '🚀',
+      task = '📌',
+      lazy = '💤 ',
+    },
+  },
+})
 
 -- Load user configs
 require("config.options")
