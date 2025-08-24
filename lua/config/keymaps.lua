@@ -43,3 +43,18 @@ map('n', '<C-up>', '<C-w>K', { desc = 'Move window to the top' })
 map('n', '<leader>ml', '<cmd>Lazy<CR>', { desc = 'lazy.nvim' })
 map('n', '<leader>mm', '<cmd>Mason<CR>', { desc = 'mason.nvim' })
 
+local on_attach = function(_, bufnr)
+  local opts = { buffer = bufnr }
+
+  -- LSP navigation
+  map("n", "<leader>gd", vim.lsp.buf.definition, opts)        -- go to definition
+  map("n", "<leader>gD", vim.lsp.buf.declaration, opts)       -- go to declaration
+  map("n", "<leader>gi", vim.lsp.buf.implementation, opts)    -- go to implementation
+  map("n", "<leader>gr", vim.lsp.buf.references, opts)        -- list references
+  map("n", "<leader>K", vim.lsp.buf.hover, opts)              -- hover info
+
+  -- LSP actions
+  map("n", "<leader>rn", vim.lsp.buf.rename, opts)            -- rename symbol
+  map("n", "<leader>ca", vim.lsp.buf.code_action, opts)       -- code actions
+  map("n", "<leader>f", vim.lsp.buf.format, opts)             -- format buffer
+end
