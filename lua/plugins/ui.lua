@@ -27,6 +27,7 @@ return {
         { "<leader>l", group = "lsp" },
         { "<leader>s", group = "search" },
         { "<leader>c", group = "cwd" },
+        { "<leader>m", group = "menu" },
       })
     end,
   },

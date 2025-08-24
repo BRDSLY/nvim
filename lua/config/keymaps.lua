@@ -5,6 +5,7 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("n", "<leader>q", "<cmd>quit<CR>", { desc = "Quit" })
 map("n", "<leader>w", "<cmd>write<CR>", { desc = "Save" })
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 -- Change cwd (Oil aware)
 map("n", "<leader>cd", function()
   local cwd
@@ -23,19 +24,22 @@ end, { desc = "Change cwd to current dir" })
 
 
 -- Resize windows with arrow keys
-vim.keymap.set('n', '<left>', '<C-w>>')
-vim.keymap.set('n', '<right>', '<C-w><')
-vim.keymap.set('n', '<up>', '<C-w>+')
-vim.keymap.set('n', '<down>', '<C-w>-')
+map('n', '<left>', '<C-w>>')
+map('n', '<right>', '<C-w><')
+map('n', '<up>', '<C-w>+')
+map('n', '<down>', '<C-w>-')
 
 -- Keybinds to make split navigation easier.
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-vim.keymap.set('n', '<C-left>', '<C-w>H', { desc = 'Move window to the left' })
-vim.keymap.set('n', '<C-right>', '<C-w>L', { desc = 'Move window to the right' })
-vim.keymap.set('n', '<C-down>', '<C-w>J', { desc = 'Move window to the bottom' })
-vim.keymap.set('n', '<C-up>', '<C-w>K', { desc = 'Move window to the top' })
+map('n', '<C-left>', '<C-w>H', { desc = 'Move window to the left' })
+map('n', '<C-right>', '<C-w>L', { desc = 'Move window to the right' })
+map('n', '<C-down>', '<C-w>J', { desc = 'Move window to the bottom' })
+map('n', '<C-up>', '<C-w>K', { desc = 'Move window to the top' })
+
+map('n', '<leader>ml', '<cmd>Lazy<CR>', { desc = 'lazy.nvim' })
+map('n', '<leader>mm', '<cmd>Mason<CR>', { desc = 'mason.nvim' })
 
