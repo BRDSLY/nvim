@@ -1,6 +1,3 @@
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- Set the default shell based on the OS type
 if string.match(string.lower(vim.loop.os_uname().sysname), 'windows') then
   -- Windows-specific shell setup

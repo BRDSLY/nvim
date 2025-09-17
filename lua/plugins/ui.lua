@@ -34,6 +34,7 @@ return {
         { "<leader>gD", vim.lsp.buf.declaration, desc = "Go to Declaration" },
         { "<leader>gd", vim.lsp.buf.definition, desc = "Go to Definition" },
         { "<leader>gi", vim.lsp.buf.implementation, desc = "Go to Implementation" },
+        { "<leader>ge", vim.diagnostic.open_float, desc = "Go to Error" },
         { "<leader>gr", vim.lsp.buf.references, desc = "References" },
         { "<leader>r", vim.lsp.buf.rename, desc = "Rename" },
       })

@@ -51,6 +51,7 @@ local on_attach = function(_, bufnr)
   map("n", "<leader>gD", vim.lsp.buf.declaration, opts)       -- go to declaration
   map("n", "<leader>gi", vim.lsp.buf.implementation, opts)    -- go to implementation
   map("n", "<leader>gr", vim.lsp.buf.references, opts)        -- list references
+  map("n", "<leader>ge", vim.diagnostic.open_float, opts)   -- list errors
   map("n", "<leader>K", vim.lsp.buf.hover, opts)              -- hover info
 
   -- LSP actions
