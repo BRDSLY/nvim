@@ -16,4 +16,8 @@ vim.list_extend(plugins, file_plugins)
 local utils_plugins = require("plugins.utils")
 vim.list_extend(plugins, utils_plugins)
 
+-- Strudel
+local strudel_plugins = require("plugins.strudel")
+vim.list_extend(plugins, strudel_plugins)
+
 return plugins
